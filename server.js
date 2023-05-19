@@ -9,7 +9,7 @@ const server = http.createServer(app);
 const io = require('socket.io')(server);
 const path = require('path');
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(bp.urlencoded({extended: true}));
 app.use(session({
     secret: 'secret',
