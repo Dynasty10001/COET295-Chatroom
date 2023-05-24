@@ -21,12 +21,26 @@ app.use(session({
 app.set('view engine', 'ejs');
 console.log(`http://localhost:${PORT}`);
 
-
+var name = 'Kyle';
 
 app.get('/', async(req, res) => {
-    res.render('index.ejs', {name: 'Kyle'});
+    res.render('index.ejs', {name: name});
 });
 
+io.on('connection', (socket) => {
+    socket.on('joining msg', (name) => {
+        io.emit('chat message', `---${name} is in---`);
+    });
+
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+        io.emit('chat message', `---${name} bailed---`);
+      });
+
+      socket.on('chat message', (msg) => {
+        socket.broadcast.emit('chat message', msg);
+      });
+});
 
 server.listen(9000, () => {
     console.log(`Listening on port: ${PORT}`);

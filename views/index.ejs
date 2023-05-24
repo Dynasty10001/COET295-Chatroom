@@ -22,16 +22,23 @@
             </div>
         </div>
 
-
-
         <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
         <script>
+            var socket = io();
+            socket.emit('joining msg', `<%= name %>`);
+
             $('form').submit((e) => {
                 e.preventDefault();
+                socket.emit('chat message', (`<%= name %>` + ':  ' + $('#msg').val()));
                 $('#msgBox').append($('<li class="left">').text('You: ' + $('#msg').val()));
                 $('#msg').val('');
                 $('#chat').scrollTop($('#chat')[0].scrollHeight);
             });
+
+            socket.on('chat message', function(msg){
+      			$('#messages').append($('<li class="right">').text(msg));
+    		});
         </script>
 
     </body>
