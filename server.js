@@ -19,7 +19,7 @@ app.use(session({
 }));
 
 app.set('view engine', 'ejs');
-console.log(`http://localhost: ${PORT}`);
+console.log(`http://localhost:${PORT}`);
 
 
 

@@ -10,29 +10,34 @@ body{
 }
 
 #box {
-    background-color: aliceblue;
+    background-color: darkslategrey;
     max-width: 275px;
     max-height: 515;
-    min-height: 515;
+    min-height: 525;
     border: 2px solid black;
     padding: 15;
     word-wrap: break-word;
     overflow-y: auto;
-    
 }
 
-ul{
-    list-style: none;
-}
 
 ul li {
-    padding-top: 2px;
+    padding: 5px;
+    list-style: none;
+    color: white;
+}
+
+#chat {
+    max-height: 480px;
+    overflow-y: auto;
+    list-style: none;
 }
 
 #chatbox {
     position: fixed;
-    top: 540px;
+    top: 530px;
     background-color: black;
-    padding: 1px;
+    padding: 2px;
+    margin: 6px;
     text-shadow: 10px 10px;
 }

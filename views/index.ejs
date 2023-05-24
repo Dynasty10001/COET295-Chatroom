@@ -9,7 +9,9 @@
         <h1>Hello <%= name %></h1>
 
         <div id="box">
-            <ul id="chat"></ul>
+            <div id="chat">
+                <ul id="msgBox"></ul>
+            </div>
             <div id="chatbox">
                 <form action="">
                     <input id="msg" type="text" name="msg" required placeholder="Enter message here" autocomplete="off"/>
@@ -24,7 +26,7 @@
         <script>
             $('form').submit((e) => {
                 e.preventDefault();
-                $('#chat').append($('<li id="lst">').text('You: ' + $('#msg').val()));
+                $('#msgBox').append($('<li id="lst">').text('You: ' + $('#msg').val()));
                 $('#msg').val(''); 
             });
         </script>
