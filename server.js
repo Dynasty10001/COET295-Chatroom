@@ -29,12 +29,12 @@ app.get('/', async(req, res) => {
 
 io.on('connection', (socket) => {
     socket.on('joining msg', (name) => {
-        io.emit('chat message', `---${name} is in---`);
+        io.emit('chat message', `---${name} has joined the chat---`);
     });
 
     socket.on('disconnect', () => {
         console.log('user disconnected');
-        io.emit('chat message', `---${name} bailed---`);
+        io.emit('chat message', `---${name} has left the chat---`);
       });
 
       socket.on('chat message', (msg) => {

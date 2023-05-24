@@ -10,8 +10,6 @@
         <div id="box">
             <div id="chat">
                 <ul id="msgBox">
-                    <li class="right">John: hi</li>
-                    <li class="right">Jimmy: hellooo</li>
                 </ul>
             </div>
             <div id="chatbox">
@@ -37,7 +35,7 @@
             });
 
             socket.on('chat message', function(msg){
-      			$('#messages').append($('<li class="right">').text(msg));
+      			$('#msgBox').append($('<li class="right">').text(msg));
     		});
         </script>
 
