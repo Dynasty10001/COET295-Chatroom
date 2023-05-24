@@ -5,39 +5,77 @@
 }
 
 body{
-    font: 20px;
-    background-color: darkolivegreen;
+    font-size: 25px;
+    background-color: rgb(224, 253, 255);
 }
 
 #box {
-    background-color: darkslategrey;
-    max-width: 275px;
-    max-height: 515;
-    min-height: 525;
+    position: absolute;
+    background-color: rgb(58, 73, 73);
+    /*max-width: 275px;*/
+    width: 50%;
+    /*max-height: 515;*/
+    min-height: 100%;
     border: 2px solid black;
-    padding: 15;
+    padding: 15px;
+    margin: auto;
     word-wrap: break-word;
     overflow-y: auto;
+
+    bottom: 0;
+    left: 25%;
 }
 
 
-ul li {
+.left {
     padding: 5px;
     list-style: none;
     color: white;
+    text-align: left;
 }
 
+.right {
+    padding: 5px;
+    list-style: none;
+    color: aquamarine;
+    text-align: right;
+}
+
+
+/* ul {
+    width: 100%;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    columns: 2;
+    column-span: all;
+    list-style: none;
+} */
+
 #chat {
-    max-height: 480px;
+    position: absolute;
+    max-height: 93%;
+    min-width: 96%;
     overflow-y: auto;
+    overflow-x: auto;
+    word-wrap: break-word;
     list-style: none;
 }
 
 #chatbox {
-    position: fixed;
-    top: 530px;
-    background-color: black;
-    padding: 2px;
-    margin: 6px;
+    position: absolute;
+    bottom: 0;
+    padding: 0;
+    margin: auto;
     text-shadow: 10px 10px;
+    min-width: 95%;
+    min-height: 45px;
+}
+
+#msg {
+    width: 95%;
+    height: 30px;
+}
+
+#btnSubmit {
+    height: 30px;
 }
