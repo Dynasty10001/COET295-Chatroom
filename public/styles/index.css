@@ -11,10 +11,9 @@ body{
 
 #box {
     position: absolute;
-    background-color: rgb(58, 73, 73);
-    /*max-width: 275px;*/
+    /* background-color: rgb(58, 73, 73); */
+    background-color: black;
     width: 50%;
-    /*max-height: 515;*/
     min-height: 100%;
     border: 2px solid black;
     padding: 15px;
@@ -41,20 +40,11 @@ body{
     text-align: right;
 }
 
-
-/* ul {
-    width: 100%;
-    -webkit-columns: 2;
-    -moz-columns: 2;
-    columns: 2;
-    column-span: all;
-    list-style: none;
-} */
-
 #chat {
     position: absolute;
     max-height: 93%;
     min-width: 96%;
+    max-width: 96%;
     overflow-y: auto;
     overflow-x: auto;
     word-wrap: break-word;
@@ -66,16 +56,36 @@ body{
     bottom: 0;
     padding: 0;
     margin: auto;
-    text-shadow: 10px 10px;
     min-width: 95%;
     min-height: 45px;
 }
 
 #msg {
-    width: 95%;
+    position: relative;
+    width: 75%;
     height: 30px;
+    color: white;
+    background-color: black;
+}
+
+#msglbl {
+    font-size: 20px;
+    color: white;
 }
 
 #btnSubmit {
     height: 30px;
+}
+
+@font-face {
+    font-family: "terminal";
+    src: url("../fonts/Modeseven-L3n5.ttf") format("truetype");
+}
+
+.right {
+    font-family: "terminal";
+}
+
+.left {
+    font-family: "terminal";
 }

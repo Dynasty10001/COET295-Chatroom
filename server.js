@@ -24,7 +24,7 @@ console.log(`http://localhost:${PORT}`);
 
 
 app.get('/', async(req, res) => {
-    res.render('index.ejs', {name: ''});
+    res.render('index.ejs', {name: 'Kyle'});
 });
 
 
