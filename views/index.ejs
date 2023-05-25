@@ -63,12 +63,84 @@
             window.onclick = function(event) {
                 if (event.target !== modal && event.target !== btn && event.target !== document.getElementById("gifsubmit") && event.target !== document.getElementById("term")) {
                         modal.style.display = "none";
+                        $('#gifs').empty();
                 }
             } 
 
             btn.onclick = function() {
-            modal.style.display = "block";
+                $("#term").val('');
+                search_term = $("#term").val();
+                modal.style.display = "block";
+                grab_data();
             }
+
+
+            function httpGetAsync(theUrl, callback) {
+                // create the request object
+                var xmlHttp = new XMLHttpRequest();
+
+                // set the state change callback to capture when the response comes in
+                xmlHttp.onreadystatechange = function()
+                {
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                    {
+                        callback(xmlHttp.responseText);
+                    }
+                }
+
+                // open as a GET call, pass in the url and set async = True
+                xmlHttp.open("GET", theUrl, true);
+
+                // call send with no params as they were passed in on the url string
+                xmlHttp.send(null);
+
+                return;
+            }
+
+            var top_gifs;
+            // callback for the top GIFs of search
+            function tenorCallback_search(responsetext)
+            {
+                // Parse the JSON response
+                var response_objects = JSON.parse(responsetext);
+
+                top_gifs = response_objects["results"];
+                top_gifs.forEach((gifObj, i=0) => {
+                    var img_gif = document.createElement('img');
+                    img_gif.setAttribute("id", i++);
+                    img_gif.src = gifObj.media_formats.nanogif.url;
+                    document.getElementById('gifs').appendChild(img_gif);
+                });
+
+                return;
+
+            }
+
+            var search_term = "hello";
+
+            function grab_data(){
+                var apikey = "AIzaSyDl0jUTl1a4cmzX9n-bQcFzdLXTrMOOBzM"
+                var clientkey = "coet295-chatroom"
+                var lmt = 8;
+                
+                if(search_term.length <= 0)
+                {
+                    search_term = "hello";
+                }
+
+                var search_url = "https://tenor.googleapis.com/v2/search?q=" + search_term + "&key=" +
+                    apikey +"&client_key=" + clientkey +  "&limit=" + lmt;
+                httpGetAsync(search_url, tenorCallback_search);
+                return
+            }
+
+            
+
+            $("#term").on('input', () => {
+                $('#gifs').empty();
+                search_term = $("#term").val();
+                grab_data();
+            })
 
             
         </script>
