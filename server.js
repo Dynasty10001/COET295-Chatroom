@@ -80,6 +80,10 @@ io.on('connection', (socket) => {
       socket.on('chat message', (msg) => {
         socket.broadcast.emit('chat message', msg);
       });
+
+      socket.on('img message', (msg, img) => {
+        socket.broadcast.emit('img message', img);
+      });
 });
 
 server.listen(PORT, () => {

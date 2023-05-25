@@ -49,11 +49,14 @@
                 $('#msgBox').append($('<li class="left">').text('You: ' + $('#msg').val()));
                 $('#msg').val('');
                 $('#chat').scrollTop($('#chat')[0].scrollHeight);
-
             });
 
             socket.on('chat message', function(msg){
       			$('#msgBox').append($('<li class="right">').text(msg));
+    		});
+
+            socket.on('img message', function(img){
+      			$('#msgBox').append($('<li class="right">').append("<img>").src=img);
     		});
 
             // MODAL STUFF
@@ -110,6 +113,10 @@
                     img_gif.setAttribute("id", i++);
                     img_gif.src = gifObj.media_formats.nanogif.url;
                     document.getElementById('gifs').appendChild(img_gif);
+                    img_gif.onclick((e) =>{
+                        socket.emit('img message', (`<%= name %>` + ':  ', img_gif));
+                        $('#msgBox').append($('<li class="left">').append("<img>").src=img);
+                    });
                 });
 
                 return;
