@@ -123,6 +123,7 @@
                         console.log(e.target);
                         socket.emit('img message', e.target.src);
                         $('#msgBox').append($('<li class="left">').text('You: ').append(e.target));
+                        $('#chat').scrollTop($('#chat')[0].scrollHeight);
                     });
                 });
                 return;
