@@ -59,7 +59,9 @@
     		});
 
             socket.on('img message', function(img){
-      			$('#msgBox').append($('<li class="right">').append("<img>").src=img);
+                let img_gif = document.createElement('img');
+                img_gif.src = img
+      			$('#msgBox').append($('<li class="right">').append(img_gif));
     		});
 
             // MODAL STUFF
@@ -119,7 +121,7 @@
                     img_gif.addEventListener('click',(e) =>{
                         console.log(e.target.getAttribute("id"));
                         console.log(e.target);
-                        socket.emit('img message', e.target.getAttribute("src"));
+                        socket.emit('img message', e.target.src);
                         $('#msgBox').append($('<li class="left">').text('You: ').append(e.target));
                     });
                 });
