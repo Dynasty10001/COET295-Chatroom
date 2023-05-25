@@ -66,7 +66,7 @@ body{
 
 #msg {
     position: relative;
-    width: 80%;
+    width: 75%;
     height: 30px;
     color: white;
     background-color: black;
@@ -106,6 +106,7 @@ body{
     color: rgb(0, 0, 0);
     font-family: "terminal";
     margin-bottom: 25px;
+    max-width: 7.5%;
 }
 
 .modal {
