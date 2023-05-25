@@ -12,6 +12,6 @@ automatic_scaling:
 
 env_variables:
     AMCLOUD: "gcloud"
-    CLIENTID: ""
+    CLIENTID: "1024553040956-opjct211r8tsbl6rga5n79chv03todkm.apps.googleusercontent.com"
     APPURL: "https://coet295-chatroom-387220.uc.r.appspot.com/"
 # you can also specify handlers

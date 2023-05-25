@@ -1,10 +1,12 @@
 const express = require('express');
 const bp = require('body-parser');
 const session = require('express-session');
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 8081;
 const http = require('http');
 const app = express();
 const server = http.createServer(app);
+const {Datastore} = require('@google-cloud/datastore');
+const {OAuth2Client} = require('google-auth-library');
 
 const io = require('socket.io')(server);
 const path = require('path');
@@ -21,7 +23,45 @@ app.use(session({
 app.set('view engine', 'ejs');
 console.log(`http://localhost:${PORT}`);
 
+app.use(function(req,res,next){
+    if(process.env.NODE_ENV != "production"){
+        res.setHeader('Referrer-Policy', 'no-referrer-when-downgrade');
+    }
+    next();
+})
+
+app.use(checkLoggedIn);
+
 var name = 'Kyle';
+const CLIENTID = process.env.CLIENTID;
+const datastore = new Datastore();
+
+app.get('/login', (req,res) =>{
+    console.log('GET from /login');
+    res.render('login.ejs', {clientid: CLIENTID});
+});
+
+app.post('/login', async (req,res) => {
+    console.log('POST to  /login');
+
+    try {
+        let user = await verifyLogin(req.body.credential, CLIENTID);
+
+        req.session.loggedin = true;
+        req.session.username = user.givenname;
+        req.session.userid = user.uid; // leaving for potential future endeavors
+
+        res.redirect('/');
+    } catch {
+        res.send("Invalid Login");
+    }
+
+});
+
+app.post('/logout', (req,res) => {
+    delete req.session;
+    res.redirect('/');
+});
 
 app.get('/', async(req, res) => {
     res.render('index.ejs', {name: name});
@@ -42,6 +82,29 @@ io.on('connection', (socket) => {
       });
 });
 
-server.listen(9000, () => {
+server.listen(8081, () => {
     console.log(`Listening on port: ${PORT}`);
 });
+
+async function verifyLogin(credential, clientid) {
+    const client = new OAuth2Client(clientid);
+    const ticket = await client.verifyIdToken({
+        idToken: credential,
+        audience: clientid,
+    });
+    const payload = ticket.getPayload();
+    const userinfo = {
+        givenname: payload.given_name,
+        uid: payload.sub,
+    }
+
+    return userinfo;
+}
+
+function checkLoggedIn(req, res, next) {
+    if (req.session.loggedin || req.path =='/login') {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
