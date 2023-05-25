@@ -1,7 +1,7 @@
 # Contains configuration for our gcloud app engine application
 
 # runtime is whta executable to use to run our code
-runtime: nodejs18
+runtime: nodejs20
 
 # we'll also set the maximum number of instances to launch to 1
 automatic_scaling:
