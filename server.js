@@ -82,7 +82,7 @@ io.on('connection', (socket) => {
       });
 
       socket.on('img message', (msg, img) => {
-        socket.broadcast.emit('img message', img);
+        socket.broadcast.emit('img message', msg, img, );
       });
 });
 
