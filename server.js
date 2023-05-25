@@ -73,10 +73,6 @@ io.on('connection', (socket) => {
         io.emit('chat message', `---${name} has joined the chat---`);
     });
 
-    socket.on('disconnect', () => {
-        io.emit('chat message', `---${name} has left the---`);
-      });
-
       socket.on('chat message', (msg) => {
         socket.broadcast.emit('chat message', msg);
       });
