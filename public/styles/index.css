@@ -31,6 +31,7 @@ body{
     list-style: none;
     color: white;
     text-align: left;
+    font-family: "terminal";
 }
 
 .right {
@@ -38,6 +39,7 @@ body{
     list-style: none;
     color: aquamarine;
     text-align: right;
+    font-family: "terminal";
 }
 
 #chat {
@@ -47,7 +49,7 @@ body{
     max-width: 96%;
     overflow-y: auto;
     overflow-x: auto;
-    word-wrap: break-word;
+    word-wrap: break-word; 
     list-style: none;
 }
 
@@ -58,11 +60,13 @@ body{
     margin: auto;
     min-width: 95%;
     min-height: 45px;
+    display: flex;
+    flex-direction: row;
 }
 
 #msg {
     position: relative;
-    width: 75%;
+    width: 80%;
     height: 30px;
     color: white;
     background-color: black;
@@ -71,6 +75,8 @@ body{
 #msglbl {
     font-size: 20px;
     color: white;
+    font-family: "terminal";
+    margin-right: 15px;
 }
 
 #btnSubmit {
@@ -80,14 +86,6 @@ body{
 @font-face {
     font-family: "terminal";
     src: url("../fonts/Modeseven-L3n5.ttf") format("truetype");
-}
-
-.right {
-    font-family: "terminal";
-}
-
-.left {
-    font-family: "terminal";
 }
 
 #logout {
@@ -100,3 +98,28 @@ body{
 #logoutForm {
     margin: 25px;
 }
+
+#gifsbtn {
+    float: right;
+    font-size: 25px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-family: "terminal";
+    margin-bottom: 25px;
+}
+
+.modal {
+    display: none;
+    position: fixed; 
+    z-index: 1; 
+    right: 0;
+    bottom: 0;
+    width: 35%;
+    height: 50%; 
+    overflow: auto; 
+    background-color: rgb(65, 65, 65);
+    border:blue;
+    border: 4px solid aquamarine;
+    border-radius: 5px;
+    padding: 5px;
+  }

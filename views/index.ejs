@@ -15,18 +15,29 @@
                 </ul>
             </div>
             <div id="chatbox">
-                <form action="" id="msgForm">
+                <form action="" id="msgForm" class="flex-container" style="flex-grow: 9">
                     <label for="msg" id="msglbl">C:\Users\<%= name %>></label>
                     <input id="msg" type="text" name="msg" required placeholder="" autocomplete="off"/>
                 </form>
+                <button id="gifsbtn" style="flex-grow: 1">gifs</button>
             </div>
+        </div>
+        <div id="gifsmodal" class="modal">
+            <form action="/gifs">
+                <input type="text" name="term">
+                <button type="submit">Search</button>
+                <button id='trend'>Trend</button>
+              </form>
+              <div id="gifs">
+
+              </div>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script>
-
-            var socket = io();
+            // SOCKET STUFF
+            let socket = io();
             socket.emit('joining msg', `<%= name %>`);
 
             $('#msgForm').submit((e) => {
@@ -40,6 +51,19 @@
             socket.on('chat message', function(msg){
       			$('#msgBox').append($('<li class="right">').text(msg));
     		});
+
+            // MODAL STUFF
+            let modal = document.getElementById("gifs");
+            let btn = document.getElementById("gifsbtn");
+            btn.onclick = function() {
+            modal.style.display = "block";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            } 
         </script>
 
     </body>

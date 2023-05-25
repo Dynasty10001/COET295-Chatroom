@@ -14,4 +14,5 @@ env_variables:
     AMCLOUD: "gcloud"
     CLIENTID: "1024553040956-opjct211r8tsbl6rga5n79chv03todkm.apps.googleusercontent.com"
     APPURL: "https://coet295-chatroom-387220.uc.r.appspot.com/"
+    TENORAPIKEY: "AIzaSyDl0jUTl1a4cmzX9n-bQcFzdLXTrMOOBzM"
 # you can also specify handlers

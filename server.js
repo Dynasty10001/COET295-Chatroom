@@ -7,6 +7,12 @@ const app = express();
 const server = http.createServer(app);
 const {Datastore} = require('@google-cloud/datastore');
 const {OAuth2Client} = require('google-auth-library');
+const tenorAPIKey = process.env.TENORAPIKEY
+const Tenor = require("tenorjs").client({
+  "Key": "AIzaSyDl0jUTl1a4cmzX9n-bQcFzdLXTrMOOBzM",
+  "Filter": "high", 
+  "Locale": "en_US", 
+});
 
 const io = require('socket.io')(server);
 const path = require('path');
@@ -32,6 +38,7 @@ app.use(function(req,res,next){
 
 app.use(checkLoggedIn);
 
+let name;
 const CLIENTID = process.env.CLIENTID;
 const datastore = new Datastore();
 
@@ -49,7 +56,7 @@ app.post('/login', async (req,res) => {
         req.session.loggedin = true;
         req.session.username = user.givenname;
         req.session.userid = user.uid; // leaving for potential future endeavors
-
+        name = req.session.username;
         res.redirect('/');
     } catch {
         res.send("Invalid Login");
@@ -63,7 +70,22 @@ app.post('/logout', (req,res) => {
 });
 
 app.get('/', async(req, res) => {
-    res.render('index.ejs', {name: req.session.username});
+
+    res.render('index.ejs', {name: req.session.username})
+    
+    // term = ""
+
+    // if (req.body.term) {
+    //     term = req.body.term
+    // }
+
+    // Tenor.Search.Query(term, "10")
+    // .then(response => {
+    //     // store the gifs we get back from the search
+    //     // const gifs = response; maybe ok to remove
+    //     // pass the gifs as an object into the home page
+    //     res.render('index.ejs', {name: req.session.username, gifs: response});
+    // }).catch(console.error);
 });
 
 io.on('connection', (socket) => {
@@ -84,6 +106,7 @@ io.on('connection', (socket) => {
 server.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
 });
+
 
 async function verifyLogin(credential, clientid) {
     const client = new OAuth2Client(clientid);
