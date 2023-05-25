@@ -115,7 +115,7 @@
                     document.getElementById('gifs').appendChild(img_gif);
                     img_gif.onclick((e) =>{
                         socket.emit('img message', (`<%= name %>` + ':  ', img_gif));
-                        $('#msgBox').append($('<li class="left">').append("<img>").src=img);
+                        $('#msgBox').append($('<li class="left">').append(img));
                     });
                 });
 
