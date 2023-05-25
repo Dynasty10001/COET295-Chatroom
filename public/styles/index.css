@@ -138,10 +138,10 @@ body{
 #term {
     position: relative;
     flex-grow: 1;
-    height: 30px;
+    height: 35px;
     color: white;
     background-color: black;
-    margin-right: 5px;
+    /*margin-right: 5px;*/
 }
 
 #gifsubmit, #close {
