@@ -7,12 +7,12 @@ const app = express();
 const server = http.createServer(app);
 const {Datastore} = require('@google-cloud/datastore');
 const {OAuth2Client} = require('google-auth-library');
-const tenorAPIKey = process.env.TENORAPIKEY
-const Tenor = require("tenorjs").client({
-  "Key": "AIzaSyDl0jUTl1a4cmzX9n-bQcFzdLXTrMOOBzM",
-  "Filter": "high", 
-  "Locale": "en_US", 
-});
+// const tenorAPIKey = process.env.TENORAPIKEY
+// const Tenor = require("tenorjs").client({
+//   "Key": "AIzaSyDl0jUTl1a4cmzX9n-bQcFzdLXTrMOOBzM",
+//   "Filter": "high", 
+//   "Locale": "en_US", 
+// });
 
 const io = require('socket.io')(server);
 const path = require('path');
