@@ -23,10 +23,10 @@
             </div>
         </div>
         <div id="gifsmodal" class="modal">
-            <form action="/gifs">
-                <input type="text" name="term">
-                <button type="submit">Search</button>
-                <button id='trend'>Trend</button>
+            <form action="/gifs" id="gifsform">
+                <input type="text" name="term" id="term">
+                <button type="submit" id="gifsubmit">search</button>
+                <button type="button" id='close'>close</button>
               </form>
               <div id="gifs">
 
@@ -53,17 +53,20 @@
     		});
 
             // MODAL STUFF
-            let modal = document.getElementById("gifs");
+            let modal = document.getElementById("gifsmodal");
             let btn = document.getElementById("gifsbtn");
+
+            window.onclick = function(event) {
+                if (event.target !== modal && event.target !== btn && event.target !== document.getElementById("gifsubmit") && event.target !== document.getElementById("term")) {
+                        modal.style.display = "none";
+                }
+            } 
+
             btn.onclick = function() {
             modal.style.display = "block";
             }
 
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            } 
+            
         </script>
 
     </body>
