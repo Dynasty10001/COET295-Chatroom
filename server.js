@@ -1,7 +1,7 @@
 const express = require('express');
 const bp = require('body-parser');
 const session = require('express-session');
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 8081;
 const http = require('http');
 const app = express();
 const server = http.createServer(app);
@@ -34,7 +34,7 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect', () => {
         console.log('user disconnected');
-        io.emit('chat message', `---${name} has left the chat---`);
+        io.emit('chat message', `---${name} has left the---`);
       });
 
       socket.on('chat message', (msg) => {
@@ -42,6 +42,6 @@ io.on('connection', (socket) => {
       });
 });
 
-server.listen(9000, () => {
+server.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
 });
