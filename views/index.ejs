@@ -6,14 +6,16 @@
         <link href="styles/index.css" rel="stylesheet" type="text/css"/>
     </header>
     <body>
-
+        <form action="/logout" method="POST" id="logoutForm">
+            <input type="submit" value="Logout" id="logout">
+        </form>
         <div id="box">
             <div id="chat">
                 <ul id="msgBox">
                 </ul>
             </div>
             <div id="chatbox">
-                <form action="">
+                <form action="" id="msgForm">
                     <label for="msg" id="msglbl">C:\Users\<%= name %>></label>
                     <input id="msg" type="text" name="msg" required placeholder="" autocomplete="off"/>
                 </form>
@@ -27,7 +29,7 @@
             var socket = io();
             socket.emit('joining msg', `<%= name %>`);
 
-            $('form').submit((e) => {
+            $('#msgForm').submit((e) => {
                 e.preventDefault();
                 socket.emit('chat message', (`<%= name %>` + ':  ' + $('#msg').val()));
                 $('#msgBox').append($('<li class="left">').text('You: ' + $('#msg').val()));

@@ -32,7 +32,6 @@ app.use(function(req,res,next){
 
 app.use(checkLoggedIn);
 
-var name = 'Kyle';
 const CLIENTID = process.env.CLIENTID;
 const datastore = new Datastore();
 
@@ -64,7 +63,7 @@ app.post('/logout', (req,res) => {
 });
 
 app.get('/', async(req, res) => {
-    res.render('index.ejs', {name: name});
+    res.render('index.ejs', {name: req.session.username});
 });
 
 io.on('connection', (socket) => {

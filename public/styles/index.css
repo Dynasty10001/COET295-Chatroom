@@ -89,3 +89,14 @@ body{
 .left {
     font-family: "terminal";
 }
+
+#logout {
+    font-size: 25px;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    font-family: "terminal";
+}
+
+#logoutForm {
+    margin: 25px;
+}
