@@ -23,9 +23,8 @@
             </div>
         </div>
         <div id="gifsmodal" class="modal">
-            <form action="/gifs" id="gifsform">
+            <form action="" id="gifsform">
                 <input type="text" name="term" id="term">
-                <button type="submit" id="gifsubmit">search</button>
                 <button type="button" id='close'>close</button>
               </form>
               <div id="gifs">
@@ -39,6 +38,10 @@
             // SOCKET STUFF
             let socket = io();
             socket.emit('joining msg', `<%= name %>`);
+
+            $('#gifsform').submit((e) => {
+                e.preventDefault();
+            })
 
             $('#msgForm').submit((e) => {
                 e.preventDefault();
@@ -114,13 +117,13 @@
                     img_gif.src = gifObj.media_formats.nanogif.url;
                     document.getElementById('gifs').appendChild(img_gif);
                     img_gif.addEventListener('click',(e) =>{
-                        socket.emit('img message', (`<%= name %>` + ':  ', this));
-                        $('#msgBox').append($('<li class="left">').append(this));
+                        console.log(e.target.getAttribute("id"));
+                        console.log(e.target);
+                        socket.emit('img message', e.target.getAttribute("src"));
+                        $('#msgBox').append($('<li class="left">').text('You: ').append(e.target));
                     });
                 });
-
                 return;
-
             }
 
             var search_term = "hello";
@@ -128,7 +131,7 @@
             function grab_data(){
                 var apikey = "AIzaSyDl0jUTl1a4cmzX9n-bQcFzdLXTrMOOBzM"
                 var clientkey = "coet295-chatroom"
-                var lmt = 8;
+                var lmt = 50;
                 
                 if(search_term.length <= 0)
                 {

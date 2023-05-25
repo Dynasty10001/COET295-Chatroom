@@ -154,3 +154,7 @@ body{
     display: flex;
     flex-direction: row;
 }
+
+#gifs > img {
+    margin: 5px;
+}

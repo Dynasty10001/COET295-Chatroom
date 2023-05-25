@@ -81,8 +81,9 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('chat message', msg);
       });
 
-      socket.on('img message', (msg, img) => {
-        socket.broadcast.emit('img message', msg, img, );
+      socket.on('img message', (img) => {
+        console.log(img);
+        socket.broadcast.emit('img message', img);
       });
 });
 
