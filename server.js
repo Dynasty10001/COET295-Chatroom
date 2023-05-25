@@ -74,7 +74,7 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect', () => {
         console.log('user disconnected');
-        io.emit('chat message', `---${name} has left the chat---`);
+        io.emit('chat message', `---${name} has left the---`);
       });
 
       socket.on('chat message', (msg) => {
@@ -82,7 +82,7 @@ io.on('connection', (socket) => {
       });
 });
 
-server.listen(8081, () => {
+server.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
 });
 
