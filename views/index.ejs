@@ -24,7 +24,7 @@
         </div>
         <div id="gifsmodal" class="modal">
             <form action="" id="gifsform">
-                <input type="text" name="term" id="term">
+                <input type="text" name="term" id="term" placeholder="-- Start typing here to search for a gif --">
                 <button type="button" id='close'>close</button>
               </form>
               <div id="gifs">
@@ -32,17 +32,14 @@
               </div>
         </div>
 
-        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script> 
         <script src="/socket.io/socket.io.js"></script>
         <script>
             // SOCKET STUFF
             let socket = io();
             socket.emit('joining msg', `<%= name %>`);
-
-            $('#gifsform').submit((e) => {
-                e.preventDefault();
-            })
-
+            
+            // deals with emitting the messages to the server and adding the message to the chatbox for the user
             $('#msgForm').submit((e) => {
                 e.preventDefault();
                 if($("li").length > 75){
@@ -54,10 +51,12 @@
                 $('#chat').scrollTop($('#chat')[0].scrollHeight);
             });
 
+            // adds messages sent from the server to the users chatbox
             socket.on('chat message', function(msg){
       			$('#msgBox').append($('<li class="right">').text(msg));
     		});
 
+            // adds images sent from the server to the users chatbox
             socket.on('img message', function(img){
                 let img_gif = document.createElement('img');
                 img_gif.src = img
@@ -68,6 +67,12 @@
             let modal = document.getElementById("gifsmodal");
             let btn = document.getElementById("gifsbtn");
 
+            // Prevent the modal from closing when the user presses enter after entering a search term
+            $('#gifsform').submit((e) => {
+                e.preventDefault();
+            })
+
+            // Close the modal when clicking anywhere but the modal itself
             window.onclick = function(event) {
                 if (event.target !== modal && event.target !== btn && event.target !== document.getElementById("gifsubmit") && event.target !== document.getElementById("term")) {
                         modal.style.display = "none";
@@ -75,6 +80,7 @@
                 }
             } 
 
+            // opens the modal upon clicking the "gifs" button.
             btn.onclick = function() {
                 $("#term").val('');
                 search_term = $("#term").val();
@@ -82,7 +88,9 @@
                 grab_data();
             }
 
-
+            // TENOR STUFF
+            // generally modified from the google docs slightly to work within out application
+            // link: https://developers.google.com/tenor/guides/quickstart
             function httpGetAsync(theUrl, callback) {
                 // create the request object
                 var xmlHttp = new XMLHttpRequest();
@@ -107,6 +115,7 @@
 
             var top_gifs;
             // callback for the top GIFs of search
+            // populates the modal with gifs and sets click functionality
             function tenorCallback_search(responsetext)
             {
                 // Parse the JSON response
@@ -130,9 +139,11 @@
             }
 
             var search_term = "hello";
+            var key = `<%= tenorkey %>` //"AIzaSyDl0jUTl1a4cmzX9n-bQcFzdLXTrMOOBzM"
 
+            // grabs the data from the input search term and calls the callback function
             function grab_data(){
-                var apikey = "AIzaSyDl0jUTl1a4cmzX9n-bQcFzdLXTrMOOBzM"
+                var apikey = key
                 var clientkey = "coet295-chatroom"
                 var lmt = 50;
                 
@@ -147,8 +158,7 @@
                 return
             }
 
-            
-
+            // calls the grab data function upon inputing any text into the search box
             $("#term").on('input', () => {
                 $('#gifs').empty();
                 search_term = $("#term").val();
