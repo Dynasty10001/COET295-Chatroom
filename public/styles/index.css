@@ -162,3 +162,44 @@ body{
 #gifs > img {
     margin: 5px;
 }
+
+@media only screen and (max-width: 1300px) {
+
+    #box {
+        width: 75%;
+        left: 15%;
+        z-index: 1;
+        font-size: 15px;
+    }
+
+    #logout {
+        position: relative;
+        left: 0;
+        font-size: 20px;
+        z-index: 2;
+    }
+
+    #msg {
+        width: 50%;
+        height: 50%;
+    }
+
+    #msglbl {
+        font-size: 15px;
+    }
+
+    #gifsmodal {
+        width: 75%;
+    }
+
+    #gifsbtn {
+        font-size: 15px;
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+    #box {
+        font-size: 10px;
+    }
+}
