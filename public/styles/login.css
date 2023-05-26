@@ -7,10 +7,19 @@
     font-family: "terminal";
 }
 
+
+body {
+    background: linear-gradient(
+        to  bottom left,
+        rgb(101, 182, 236),
+        rgb(12, 68, 73)
+    );
+}
+
 h1 {
-    font-size: 50px;
-    color: rgb(122, 130, 131);
-    text-shadow: 2.5px 2.5px 0px black, -2.5px -2.5px 0px black;
+    font-size: 100px;
+    color: rgb(222, 245, 185);
+    text-shadow: 3px 3px 0px black, -2.5px -2.5px 0px black;
 }
 
 .left {
@@ -34,14 +43,14 @@ h1 {
 .box {
     border-width: 5px;
     border-style: solid;
-
+    font-size: 21px;
     border-image: linear-gradient(
-        to right,
+        to left,
         darkblue,
         rgb(0, 146, 97)
     )1;
     background: linear-gradient(
-        to right,
+        to bottom left,
         rgb(0, 146, 97),
         darkblue
     );

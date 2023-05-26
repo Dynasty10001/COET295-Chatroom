@@ -6,7 +6,11 @@
 
 body{
     font-size: 25px;
-    background-color: rgb(224, 253, 255);
+    background: linear-gradient(
+        to  bottom left,
+        rgb(101, 182, 236),
+        rgb(12, 68, 73)
+    );
 }
 
 #box {
