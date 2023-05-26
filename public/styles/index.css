@@ -7,9 +7,10 @@
 body{
     font-size: 25px;
     background: linear-gradient(
-        to  bottom left,
-        rgb(101, 182, 236),
-        rgb(12, 68, 73)
+        0.75turn,
+        rgb(231, 169, 128),
+        rgb(84, 180, 144),
+        rgb(39, 61, 158)
     );
 }
 

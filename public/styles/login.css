@@ -10,9 +10,12 @@
 
 body {
     background: linear-gradient(
-        to  bottom left,
-        rgb(101, 182, 236),
-        rgb(12, 68, 73)
+        /* to  bottom left, */
+        /* rgb(101, 182, 236), */
+        0.75turn,
+        rgb(231, 169, 128),
+        rgb(84, 180, 144),
+        rgb(39, 61, 158)
     );
 }
 
@@ -44,14 +47,17 @@ h1 {
     border-width: 5px;
     border-style: solid;
     font-size: 21px;
+    box-shadow: 2px 2px black;
     border-image: linear-gradient(
         to left,
-        darkblue,
-        rgb(0, 146, 97)
+        rgb(231, 169, 128),
+        rgb(84, 180, 144),
+        rgb(39, 61, 158)
     )1;
     background: linear-gradient(
-        to bottom left,
-        rgb(0, 146, 97),
-        darkblue
+        0.25turn,
+        rgb(39, 61, 158),
+        rgb(84, 180, 144),
+        rgb(231, 169, 128)
     );
 }
