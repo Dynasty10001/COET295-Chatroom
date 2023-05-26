@@ -1,0 +1,46 @@
+@font-face {
+    font-family: "terminal";
+    src: url("../fonts/Modeseven-L3n5.ttf") format("truetype");
+}
+
+.specialfont {
+    font-family: "terminal";
+}
+
+h1 {
+    font-size: 50px;
+}
+
+.left {
+    padding: 5px;
+    list-style: none;
+    color: white;
+    text-align: left;
+    font-family: "terminal";
+    text-shadow: 2px 2px black;
+}
+
+.right {
+    padding: 5px;
+    list-style: none;
+    color: aquamarine;
+    text-align: right;
+    font-family: "terminal";
+    text-shadow: 2px 2px black;
+}
+
+.box {
+    border-width: 5px;
+    border-style: solid;
+
+    border-image: linear-gradient(
+        to right,
+        darkblue,
+        rgb(0, 146, 97)
+    )1;
+    background: linear-gradient(
+        to right,
+        rgb(0, 146, 97),
+        darkblue
+    );
+}
